@@ -1,0 +1,9 @@
+# These directories are created by the hooks in your project — not in this repo
+# Add these to YOUR project's .gitignore if you don't want logs committed:
+# session-logs/
+# subagent-progress/
+
+.DS_Store
+*.swp
+*.swo
+*~
