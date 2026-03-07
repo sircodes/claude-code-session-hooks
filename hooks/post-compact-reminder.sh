@@ -36,3 +36,5 @@ CONTEXT RESTORED AFTER COMPACTION:
 - Session logs are auto-saved to session-logs/ directory
 - Read the most recent session log if you need to restore context from before compaction
 EOF
+
+exit 0

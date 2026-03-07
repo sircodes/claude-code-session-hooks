@@ -170,6 +170,20 @@ The repo includes a status line script that shows `cwd [repo:branch]` in the Cla
 
 See [`hooks/statusline-command.sh`](hooks/statusline-command.sh) for the script.
 
+## Degradation Tolerance
+
+### Hook Exit Behavior
+All hooks are configured to exit 0 on failure. A hook error will never block a Claude Code session from starting or a compaction from proceeding. On failure, hooks log a clear message and exit cleanly.
+
+### The Compact Hook Error
+If you see `SessionStart:compact hook error` in CC, this is caused by Claude Code's internal compaction process timing out against the Claude API — it is **not** caused by these hook scripts. The hooks make no API calls. This error occurs during Anthropic service degradation and resolves when the API recovers. Your session will start normally but without the compacted context injection.
+
+### Hook Timeouts (settings.json)
+Explicit timeouts are set in `settings-example.json` to prevent hooks from hanging indefinitely:
+- **SessionStart / PreCompact:** 60 seconds
+- **Stop / SessionEnd:** 120 seconds
+- **SubagentStop:** 30 seconds
+
 ## License
 
 MIT — use it, modify it, share it.

@@ -5,7 +5,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 scripts/hooks/save-subagent-progress.py"
+            "command": "python3 scripts/hooks/save-subagent-progress.py",
+            "timeout": 30000
           }
         ]
       }
@@ -16,7 +17,8 @@
           {
             "type": "command",
             "command": "bash scripts/hooks/session-checkpoint.sh",
-            "async": true
+            "async": true,
+            "timeout": 120000
           }
         ]
       }
@@ -26,7 +28,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/hooks/pre-compact-checkpoint.sh"
+            "command": "bash scripts/hooks/pre-compact-checkpoint.sh",
+            "timeout": 60000
           }
         ]
       }
@@ -37,7 +40,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/hooks/post-compact-reminder.sh"
+            "command": "bash scripts/hooks/post-compact-reminder.sh",
+            "timeout": 60000
           }
         ]
       }
@@ -47,7 +51,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash scripts/hooks/session-checkpoint.sh"
+            "command": "bash scripts/hooks/session-checkpoint.sh",
+            "timeout": 120000
           }
         ]
       }
