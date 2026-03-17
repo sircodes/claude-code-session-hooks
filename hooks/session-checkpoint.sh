@@ -88,4 +88,15 @@ if [ "$HOOK_EVENT" = "SessionEnd" ]; then
         git commit -m "Auto-save session log $SHORT_ID" --no-verify 2>/dev/null || true
         git push origin main 2>/dev/null || true
     fi
+
+    # Auto-copy tracking files to outbox (safety net — fires even if session forgot)
+    OUTBOX="$HOME/cc-io/outbox"
+    mkdir -p "$OUTBOX" 2>/dev/null || true
+    for f in BACKLOG.md MLE-WORKING-MEMORY.md cc-rules-header.txt \
+              MLE-ARCHITECTURE-SNAPSHOT.md CLAUDE.md; do
+        [ -f "$PROJECT_DIR/$f" ] && \
+          cp "$PROJECT_DIR/$f" "$OUTBOX/$f" 2>/dev/null || true
+    done
+    [ -f "$PROJECT_DIR/.claude/claude.md" ] && \
+      cp "$PROJECT_DIR/.claude/claude.md" "$OUTBOX/claude.md" 2>/dev/null || true
 fi
